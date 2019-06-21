@@ -89,7 +89,7 @@
 	var fetchProxy = function (url, options, i) {
 		var proxy = [
 			'https://cors.io/?',
-			'http://www.html-editor.ga/jsonp.php?url=',
+			'https://jsonp.afeld.me/?url=',
 			'https://cors-anywhere.herokuapp.com/'
 		];
 		return fetch(proxy[i] + url, options).then(function (res) {
