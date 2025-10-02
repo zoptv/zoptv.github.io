@@ -1,0 +1,203 @@
+<!--  https://chatgpt.com/c/68c80652-ac40-832e-9077-48780df38a64  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Menu</title>
+  <style>
+    :root {
+      --bg-color: #000;
+      --menu-bg: #333;
+      --text-color: #fff;
+      --hover-color: red;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--hover-color);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+    margin-right: 30px;
+      height: 3px;
+      background: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    /* Fullscreen Menu Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--menu-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      left: 0;
+    }
+
+    .overlay a {
+      display: block;
+      margin: 15px 0;
+      font-size: 22px;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .overlay a:hover {
+      color: var(--hover-color);
+    }
+
+    /* Hamburger animation to X */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Demo content */
+    .content {
+      padding: 80px 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">my website</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Movies</a>
+      <a href="#">Series</a>
+      <a href="#">Videos</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Technology</a>
+      <a href="#">Sport</a>
+    </div>
+    <div class="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Overlay Menu -->
+  <div class="overlay" id="menu">
+    <a href="#">Home</a>
+    <a href="#">News</a>
+    <a href="#">Movies</a>
+    <a href="#">Series</a>
+    <a href="#">Videos</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Technology</a>
+    <a href="#">Sport</a>
+  </div>
+
+  <!-- Demo content -->
+  <div class="content">
+    <h1>Welcome to my website</h1>
+    <p>Scroll and resize window to test the responsive navigation bar.</p>
+  </div>
+
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const overlay = document.getElementById("menu");
+
+    function toggleMenu() {
+      hamburger.classList.toggle("active");
+      overlay.classList.toggle("active");
+      const expanded = hamburger.classList.contains("active");
+      hamburger.setAttribute("aria-expanded", expanded);
+      document.body.style.overflow = expanded ? "hidden" : "auto";
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+
+    // Close menu when link clicked
+    overlay.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", toggleMenu);
+    });
+
+    // Close menu on ESC key
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && overlay.classList.contains("active")) {
+        toggleMenu();
+      }
+    });
+  </script>
+</body>
+</html>
