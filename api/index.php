@@ -1,9 +1,6 @@
-<?php
-// Set X-Frame-Options header to deny loading in iframes from other websites
-header('X-Frame-Options: DENY');
-// Rest of your PHP code goes here
-?>
+<?php echo phpinfo(); ?>
 
+<!--
 <!DOCTYPE html><html><head>
 <title>index</title>
 <meta name="referrer" content="origin">
@@ -32,3 +29,4 @@ position: relative;
 </style>
 </head><body><h2 id="host"></h2>
 <script>document.getElementById("host").innerHTML = window.location.hostname;</script></body></html>
+-->
