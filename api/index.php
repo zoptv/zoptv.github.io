@@ -1,6 +1,3 @@
-<?php echo phpinfo(); ?>
-
-<!--
 <!DOCTYPE html><html><head>
 <title>index</title>
 <meta name="referrer" content="origin">
@@ -29,4 +26,4 @@ position: relative;
 </style>
 </head><body><h2 id="host"></h2>
 <script>document.getElementById("host").innerHTML = window.location.hostname;</script></body></html>
--->
+
